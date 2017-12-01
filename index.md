@@ -7,9 +7,9 @@ OGRE is a scene-oriented, flexible 3D engine written in C++ designed to make it 
 * [Manual](https://ogrecave.github.io/ogre/api/1.10/manual.html)
 
 # Latest release
-The latest stable release is **v1.10.9**. For more information see:
+The latest stable release is **v1.10.10**. For more information see:
 
-* [Download v1.10.9](https://github.com/OGRECave/ogre/releases/tag/v1.10.9)
+* [Download v1.10.10](https://github.com/OGRECave/ogre/releases/tag/v1.10.10)
 * [API documentation](https://ogrecave.github.io/ogre/api/1.10/)
 * [New and Noteworthy](https://github.com/OGRECave/ogre/blob/v1.10.4/Docs/1.10-Notes.md) (compared to v1.9)
 * [API/ ABI changes](https://abi-laboratory.pro/tracker/timeline/ogre/) (since v1.7)
@@ -33,10 +33,11 @@ If you want to dive deeper into the OGRE ecosystem here are your options.
 ## Who is using it?
 
 **Open Source**
-- [OpenSpace 3D - Open Source Platform For 3D Environments](http://www.openspace3d.com/)
+- [OpenDungeons - real time strategy game](https://opendungeons.github.io/)
 - [Rigs of Rods - Soft Body Physics Simulator](https://rigsofrods.org/)
 - [Gazebo - Robot simulation](http://gazebosim.org/)
 - [ROS 3D Robot Visualizer](http://wiki.ros.org/rviz)
+- [OpenSpace 3D - Open Source Platform For 3D Environments](http://www.openspace3d.com/)
 
 **Closed Source**
 - [Hob](http://store.steampowered.com/app/404680/Hob/)
