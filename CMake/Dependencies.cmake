@@ -91,7 +91,6 @@ endif()
 set(BUILD_COMMAND_OPTS --target install --config ${CMAKE_BUILD_TYPE})
 
 set(BUILD_COMMAND_COMMON ${CMAKE_COMMAND}
-  -DCMAKE_CONFIGURATION_TYPES=Debug;Release;MinSizeRel;RelWithDebInfo
   -DCMAKE_INSTALL_PREFIX=${OGREDEPS_PATH}
   -G ${CMAKE_GENERATOR}
   -DCMAKE_GENERATOR_PLATFORM=${CMAKE_GENERATOR_PLATFORM}
@@ -119,6 +118,7 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
         execute_process(COMMAND ${CMAKE_COMMAND}
             -E tar xf zlib-1.2.11.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
         execute_process(COMMAND ${BUILD_COMMAND_COMMON}
+            -DCMAKE_CONFIGURATION_TYPES=MinSizeRel;Debug;Release;RelWithDebInfo
             -DBUILD_SHARED_LIBS=${OGREDEPS_SHARED}
             ${PROJECT_BINARY_DIR}/zlib-1.2.11
             WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/zlib-1.2.11)
@@ -133,6 +133,7 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
     execute_process(COMMAND ${CMAKE_COMMAND}
         -E tar xf zziplib-develop.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
     execute_process(COMMAND ${BUILD_COMMAND_COMMON}
+        -DCMAKE_CONFIGURATION_TYPES=MinSizeRel;Debug;Release;RelWithDebInfo
         -DZLIB_ROOT=${OGREDEPS_PATH}
         -DZZIPMMAPPED=OFF -DZZIPCOMPAT=OFF -DZZIPLIBTOOL=OFF -DZZIPFSEEKO=OFF -DZZIPWRAP=OFF -DZZIPSDL=OFF -DZZIPBINS=OFF -DZZIPTEST=OFF -DZZIPDOCS=OFF -DBASH=sh
         -DBUILD_STATIC_LIBS=TRUE
@@ -143,14 +144,21 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
         --build ${PROJECT_BINARY_DIR}/zziplib-develop ${BUILD_COMMAND_OPTS})
 
     message(STATUS "Building pugixml")
+    message(STATUS "OHL BUILD_COMMAND_COMMON=${BUILD_COMMAND_COMMON}")
+    message(STATUS "OHL BUILD_COMMAND_OPTS=${BUILD_COMMAND_OPTS}")
+    message(STATUS "OHL CMAKE_COMMAND=${CMAKE_COMMAND}")
+    message(STATUS "OHL PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")
     file(DOWNLOAD
         https://github.com/zeux/pugixml/releases/download/v1.9/pugixml-1.9.tar.gz
         ${PROJECT_BINARY_DIR}/pugixml-1.9.tar.gz)
     execute_process(COMMAND ${CMAKE_COMMAND}
         -E tar xf pugixml-1.9.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
+    message(STATUS "OHL cmake buildcommandcommon")
     execute_process(COMMAND ${BUILD_COMMAND_COMMON}
+        -DCMAKE_CONFIGURATION_TYPES=MinSizeRel;Debug;Release;RelWithDebInfo
         ${PROJECT_BINARY_DIR}/pugixml-1.9
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/pugixml-1.9)
+    message(STATUS "OHL cmake --build")
     execute_process(COMMAND ${CMAKE_COMMAND}
         --build ${PROJECT_BINARY_DIR}/pugixml-1.9 ${BUILD_COMMAND_OPTS})
 
@@ -168,6 +176,7 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
             freetype-2.9/builds/cmake/iOS.cmake
             WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
         execute_process(COMMAND ${BUILD_COMMAND_COMMON}
+            -DCMAKE_CONFIGURATION_TYPES=MinSizeRel;Debug;Release;RelWithDebInfo
             -DBUILD_SHARED_LIBS=${OGREDEPS_SHARED}
             -DWITH_PNG=OFF
             -DWITH_BZip2=OFF # tries to use it on iOS otherwise
@@ -189,6 +198,7 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
         execute_process(COMMAND ${CMAKE_COMMAND}
             -E make_directory ${PROJECT_BINARY_DIR}/SDL2-build)
         execute_process(COMMAND ${BUILD_COMMAND_COMMON}
+            -DCMAKE_CONFIGURATION_TYPES=MinSizeRel;Debug;Release;RelWithDebInfo
             -DSDL_STATIC=FALSE
             ${PROJECT_BINARY_DIR}/SDL2-2.0.8
             WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/SDL2-build)
